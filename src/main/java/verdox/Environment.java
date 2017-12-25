@@ -13,7 +13,10 @@ public class Environment {
     private Environment() {
         System.setProperty("webdriver.gecko.driver", SETTINGS.pathToGeckoDriver + "\\geckodriver.exe");
         webDriver = new FirefoxDriver();
+        webDriver.manage().window().maximize();
+
         javascriptExecutor = (JavascriptExecutor) webDriver;
+        //javascriptExecutor.executeScript("window.focus();");
     }
 
     private static void getInstance() {
@@ -38,4 +41,6 @@ public class Environment {
         getInstance();
         return javascriptExecutor;
     }
+
+
 }
