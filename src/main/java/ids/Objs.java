@@ -19,6 +19,11 @@ public class Objs {
         wd.switchTo().defaultContent();
     }
 
+    public static void switchToRightFrame() {
+        switchToDefaultContext();
+        wd.switchTo().frame("right");
+    }
+
     public static WebElement byXpath(String xpath) {
         return wd.findElement(By.xpath(xpath));
     }
@@ -37,6 +42,33 @@ public class Objs {
             wd.switchTo().frame("left");
             return byXpath(IDs.NaviPage.xpath_LPANEL_CREATE_OUT_DOC);
         }
+    }
+
+    public static class OutDocForm {
+        public static WebElement deliveryTypeSelector() {
+            return  byXpath(IDs.OutDocForm.xpath_DELIVERY_TYPE_SELECTOR);
+        }
+
+        public static WebElement deliverySubTypeSelector() {
+            return  byXpath(IDs.OutDocForm.xpath_DELIVERY_SUBTYPE_SELECTOR);
+        }
+
+        public static WebElement deliveryDetails() {
+            return  byXpath(IDs.OutDocForm.xpath_DELIVERY_DETAILS);
+        }
+
+        public static WebElement type() {
+            return  byXpath(IDs.OutDocForm.xpath_TYPE);
+        }
+
+        public static WebElement addCustomTypeBtn() {
+            return  byXpath(IDs.OutDocForm.xpath_ADD_CUSTOM_TYPE_BTN);
+        }
+
+        public static WebElement fromTextField() {
+            return  byXpath(IDs.OutDocForm.xpath_FROM);
+        }
+
     }
 
 

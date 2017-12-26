@@ -1,17 +1,12 @@
 package verdox;
 
-import ids.IDs;
+import TestingData.OutDocs;
 import ids.Objs;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import ids.WaitStates;
 import org.testng.annotations.*;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-
-import javax.annotation.Nullable;
 
 
 public class TestSuite001 {
@@ -42,20 +37,16 @@ public class TestSuite001 {
         comboActions.clickAndType( Objs.LoginPage.passwdInput(), PASSWORD);
         Objs.LoginPage.submitBtn().click();
 
+        WaitStates.waitLeftFrameAppears();
+
         Objs.NaviPage.createOutDocBtn().click();
         Objs.switchToDefaultContext();
 
+        WaitStates.waitOutDocCreatingFormAppears();
+        HighLEvelActions.fillOutDocForm(OutDocs.OutDoc_0001());
 
 
 
-        WebDriverWait wdw = new WebDriverWait(Environment.getWebDriver(),2);
-        ExpectedCondition expectedCondition = new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver d) {
-                return d.findElement(By.xpath("//frameset[@id='centerFrameset']/frame[1]")).getAttribute("name").equals("left");
-            }
-        };
-
-        wdw.until(expectedCondition);
 
 
 
