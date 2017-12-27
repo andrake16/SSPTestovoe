@@ -72,7 +72,7 @@ public class OutDoc {
         this.orgs.add(org);
     }
 
-    public List<String> getWhoSigns() {
+    public List<String> getWhoSignsList() {
         return whoSignsList;
     }
 

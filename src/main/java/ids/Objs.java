@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import verdox.Environment;
 
-
 public class Objs {
 
     private static WebDriver wd;
@@ -66,7 +65,7 @@ public class Objs {
         }
 
         public static WebElement fromTextField() {
-            return  byXpath(IDs.OutDocForm.xpath_FROM);
+            return  byXpath(IDs.OutDocForm.xpath_FROM_INPUT);
         }
 
         public static WebElement docIncomingTextField() {
@@ -101,13 +100,47 @@ public class Objs {
             return  byXpath(IDs.OutDocForm.xpath_ADDORG_ADDRESS_INPUTFIELD);
         }
 
+        public static WebElement whiSignsInput() {
+            return  byXpath(IDs.OutDocForm.xpath_WHOSIGNS_INPUT);
+        }
+
+        public static WebElement performerInput() {
+            return  byXpath(IDs.OutDocForm.xpath_PERFORMER_INPUT);
+        }
+
+        public static WebElement whoSignsHref() {
+            return  byXpath(IDs.OutDocForm.xpath_WHOSIGNS_HREF);
+        }
+
+        public static WebElement performerHref() {
+            return  byXpath(IDs.OutDocForm.xpath_PERFORMER_HREF);
+        }
+
+
 
 
 
 
     }
 
+    public static class UsersSelectPopup {
 
+        public static WebElement searchBtn() {
+            return byXpath(ids.IDs.UsersSelectPopup.SEARCH_BTN);
+        }
+
+        public static WebElement fioSearchField() {
+            return byXpath(ids.IDs.UsersSelectPopup.FIO_SEARCH_FIELD);
+        }
+
+        public static WebElement specifiedUserInTable(String fio) {
+            String fio_xpath = "//tbody/tr/td/a/span[text()='%1$s']";
+            fio_xpath = String.format(fio_xpath,fio);
+            return byXpath(fio_xpath);
+        }
+
+
+    }
 
 
 }

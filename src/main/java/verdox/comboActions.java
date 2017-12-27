@@ -3,7 +3,11 @@ package verdox;
 import ids.Objs;
 import ids.WaitStates;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.util.Iterator;
+import java.util.Set;
 
 public class comboActions {
 
@@ -42,13 +46,32 @@ public class comboActions {
      */
     public static void selectWithSearch(WebElement inputField, String textValue) {
         inputField.sendKeys(textValue);
-        String dropDownValueXpath = "//div[@id=\"widget_uniqName_3_0_organizationId_dropdown\"]/div/div/div/div/div/span[text()='%1$s']";
+        String dropDownValueXpath = "//div[contains(@id,'widget_uniqName_3_0_')]/div/div/div/div/div/span[text()='%1$s']";
         dropDownValueXpath = String.format(dropDownValueXpath,textValue);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        WaitStates.waitAppearsByXpath(dropDownValueXpath);
         Objs.byXpath(dropDownValueXpath).click();
     }
+
+
+    public static void swithToLastBrowserWindow() {
+
+        WaitStates.waitWhileBrowserWindowWillBeTwo();
+
+        WebDriver wd = Environment.getWebDriver();
+
+        String parentWindowHandler = wd.getWindowHandle(); // Store your parent window
+        String subWindowHandler = null;
+
+        Set<String> handles = wd.getWindowHandles(); // get all window handles
+        Iterator<String> iterator = handles.iterator();
+        while (iterator.hasNext()){
+            subWindowHandler = iterator.next();
+        }
+        wd.switchTo().window(subWindowHandler); // switch to popup window
+
+        // Now you are in the popup window, perform necessary actions here
+        //wd.switchTo().window(parentWindowHandler);  // switch back to parent window
+    }
+
+
 }

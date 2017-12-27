@@ -8,7 +8,7 @@ public class Orgs {
         Org org = new Org();
         org.setName("ООО \"Север\"");
         org.setCorrespondencyReciever("Неизвестный Александр Васильевич");
-        org.setAdress("ул. Новосибирская 23");
+        org.setAdress("г. Москва, ул. Советская, 123");
         return org;
     }
 

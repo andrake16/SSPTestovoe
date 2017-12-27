@@ -24,7 +24,7 @@ public class IDs {
         public static final String xpath_DELIVERY_DETAILS = "//textarea[@name='doc.receiverInfo']";
         public static final String xpath_TYPE = "//select[@name='doc.customTypeId']";
         public static final String xpath_ADD_CUSTOM_TYPE_BTN = "//a[contains(@onclick,'addCustomType')]";
-        public static final String xpath_FROM = "//input[@name='organizationFieldFor_selectedSenderOrganizationId']";
+        public static final String xpath_FROM_INPUT = "//input[@name='organizationFieldFor_selectedSenderOrganizationId']";
         public static final String xpath_DOC_INCOMING = "//input[@name='autoCompleteField']";
         public static final String xpath_FILLCARDBY_OUTDOC_YESBTN = "//div[@class='ui-dialog-buttonset']/button/span[text()='Да']";
         public static final String xpath_FILLCARDBY_OUTDOC_NOBTN = "//div[@class='ui-dialog-buttonset']/button/span[text()='Нет']";
@@ -34,10 +34,19 @@ public class IDs {
         public static final String xpath_ADDORG_SIGNER_INPUTFIELD = "//input[@id='uniqName_3_0_signerId']";
         public static final String xpath_ADDORG_ADDRESS_INPUTFIELD = "//input[@id='uniqName_3_0_addressId']";
 
-
+        public static final String xpath_WHOSIGNS_INPUT = "//input[@name='managerFio']";
+        public static final String xpath_PERFORMER_INPUT = "//input[@name='performerFio']";
+        public static final String xpath_WHOSIGNS_HREF = "//input[@name='managerFio']/parent::*/a";
+        public static final String xpath_PERFORMER_HREF = "//input[@name='performerFio']/parent::*/a";
 
 
         //public static final String xpath_
+    }
+
+    public static class UsersSelectPopup {
+        public static final String SEARCH_BTN = "//input[@class='btn'][@value='Поиск']";
+        public static final String FIO_SEARCH_FIELD = "//input[@name='fio']";
+
     }
 
 }

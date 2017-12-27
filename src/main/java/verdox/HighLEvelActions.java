@@ -27,11 +27,19 @@ public class HighLEvelActions {
         //TODO: support more than one org
         for(Org org : outDoc.getOrgs()) {
             comboActions.selectWithSearch(Objs.OutDocForm.addOrgNameInput(), org.getName() );
-
-
-            //Objs.OutDocForm.addOrgSignerInput().sendKeys(org.getCorrespondencyReciever());
-            //Objs.OutDocForm.addOrgAdressInput().sendKeys(org.getAdress());
+            comboActions.selectWithSearch(Objs.OutDocForm.addOrgSignerInput(), org.getCorrespondencyReciever() );
+            comboActions.selectWithSearch(Objs.OutDocForm.addOrgAdressInput(), org.getAdress() );
         }
+
+        //TODO: support more than one person
+        for(String whoSigns : outDoc.getWhoSignsList()) {
+            Objs.OutDocForm.whoSignsHref().click();
+            comboActions.swithToLastBrowserWindow();
+            Objs.UsersSelectPopup.fioSearchField().sendKeys(whoSigns.substring(0,7));//search by full fio not works correctly
+            Objs.UsersSelectPopup.searchBtn().click();
+            Objs.UsersSelectPopup.specifiedUserInTable(whoSigns).click();
+        }
+
 
 
 
