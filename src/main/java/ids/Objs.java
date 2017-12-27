@@ -69,6 +69,42 @@ public class Objs {
             return  byXpath(IDs.OutDocForm.xpath_FROM);
         }
 
+        public static WebElement docIncomingTextField() {
+            return  byXpath(IDs.OutDocForm.xpath_DOC_INCOMING);
+        }
+
+        public static WebElement docIncomingDialogYesBtn() {
+            return  byXpath(IDs.OutDocForm.xpath_FILLCARDBY_OUTDOC_YESBTN);
+        }
+
+        public static WebElement docIncomingDialogNoBtn() {
+            return  byXpath(IDs.OutDocForm.xpath_FILLCARDBY_OUTDOC_NOBTN);
+        }
+
+        public static WebElement docNameTextArea() {
+            return  byXpath(IDs.OutDocForm.xpath_DOC_NAME);
+        }
+
+        public static WebElement addOrgBtn() {
+            return  byXpath(IDs.OutDocForm.xpath_ADD_ORG_BTN);
+        }
+
+        public static WebElement addOrgNameInput() {
+            return  byXpath(IDs.OutDocForm.xpath_ADDORG_NAME_INPUTFIELD);
+        }
+
+        public static WebElement addOrgSignerInput() {
+            return  byXpath(IDs.OutDocForm.xpath_ADDORG_SIGNER_INPUTFIELD);
+        }
+
+        public static WebElement addOrgAdressInput() {
+            return  byXpath(IDs.OutDocForm.xpath_ADDORG_ADDRESS_INPUTFIELD);
+        }
+
+
+
+
+
     }
 
 

@@ -52,7 +52,7 @@ public class OutDoc {
         return inputDocList;
     }
 
-    public void addInputDoc(String inputDoc) {
+    public void addIncomingDoc(String inputDoc) {
         this.inputDocList.add(inputDoc);
     }
 
