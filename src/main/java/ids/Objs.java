@@ -14,13 +14,20 @@ public class Objs {
 
     }
 
+
     public static void switchToDefaultContext() {
         wd.switchTo().defaultContent();
     }
 
     public static void switchToRightFrame() {
         switchToDefaultContext();
+        WaitStates.waitRightFrameAppears();
         wd.switchTo().frame("right");
+    }
+
+    public static void switchToLeftFrame() {
+        switchToDefaultContext();
+        wd.switchTo().frame("left");
     }
 
     public static WebElement byXpath(String xpath) {
@@ -116,7 +123,9 @@ public class Objs {
             return  byXpath(IDs.OutDocForm.xpath_PERFORMER_HREF);
         }
 
+        public static WebElement descriptionTextArea() {return byXpath("//textarea[@name='doc.description']");}
 
+        public static WebElement createBtn() {return byXpath("//input[@class='btn'][@value='Создать']"); }
 
 
 
@@ -142,5 +151,19 @@ public class Objs {
 
     }
 
+    public static class afterCreateOutDoc {
+
+        public static WebElement editOutDoc() {return byXpath("//span[@id='item_dc_out_edit']"); }
+
+        public static WebElement saveBtn() {return byXpath("//input[@class='btn'][@value='Сохранить']"); }
+
+        public static WebElement toAgreeOutDoc() {return byXpath("//span[@id='item_dc_out_agr_create']"); }
+
+        public static WebElement addAgrPersonBtn() {return byXpath("//input[@class='btn'][@value='Добавить согласующего']"); }
+
+        public static WebElement descriptionTextArea() {return byXpath("//textarea[@name='description']"); }
+
+        public static WebElement sendToAgrBtn() {return byXpath("//input[@class='btn'][@value='Отправить на согласование']"); }
+    }
 
 }

@@ -80,7 +80,7 @@ public class OutDoc {
         this.whoSignsList.add(whoSigns);
     }
 
-    public List<String> getPerformer() {
+    public List<String> getPerformerList() {
         return performerList;
     }
 

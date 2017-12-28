@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import java.util.Iterator;
 import java.util.Set;
 
-public class comboActions {
+public class ComboActions {
 
 //TODO: add all variants for select value from selectors
 
@@ -55,11 +55,11 @@ public class comboActions {
 
     public static void swithToLastBrowserWindow() {
 
-        WaitStates.waitWhileBrowserWindowWillBeTwo();
-
+        //WaitStates.waitWhileBrowserWindowWillBeTwo();
+        delay();
         WebDriver wd = Environment.getWebDriver();
 
-        String parentWindowHandler = wd.getWindowHandle(); // Store your parent window
+        Environment.setParentWindowHandler(wd.getWindowHandle()); // Store your parent window
         String subWindowHandler = null;
 
         Set<String> handles = wd.getWindowHandles(); // get all window handles
@@ -69,8 +69,19 @@ public class comboActions {
         }
         wd.switchTo().window(subWindowHandler); // switch to popup window
 
-        // Now you are in the popup window, perform necessary actions here
-        //wd.switchTo().window(parentWindowHandler);  // switch back to parent window
+    }
+
+    public static void swithToParentBrowserWindow() {
+        Environment.getWebDriver().switchTo().window(Environment.getParentWindowHandler());  // switch back to parent window
+        delay();
+    }
+
+    public static void delay() {
+        try {
+            Thread.sleep(SETTINGS.DEFAULT_DELAY);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 

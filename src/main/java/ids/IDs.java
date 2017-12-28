@@ -12,9 +12,11 @@ public class IDs {
     public static class NaviPage {
         public static final String xpath_LPANEL_CREATE_OUT_DOC = "//a[@class='link'][contains(@navigatecontentid,'dc_DC_OUT_dcOutAction.do_491839632_0_0')]";
 
-        public static final String xpath_LEFT_FRAME = "//frameset[@id='centerFrameset']/frame[1]";
+        public static final String xpath_LEFT_FRAME = "//frameset/frame[@name='left']";
+        public static final String xpath_RIGHT_FRAME = "//frameset/frame[@name='right']";
 
         public static final String xpath_OUTDOC_FORM = "//form[@id='dcOutForm']";
+
 
     }
 
@@ -49,4 +51,9 @@ public class IDs {
 
     }
 
-}
+    public static class AfterCreateOutDoc {
+        public static final String xpath_OUTDOC_AFTERCREATE_FRAME = "//frame[contains(@src ,'/107140/dc_out_left.jsp')]";
+    }
+
+
+    }

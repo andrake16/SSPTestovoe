@@ -9,6 +9,7 @@ public class Environment {
     private static Environment environment;
     private static WebDriver webDriver;
     private static JavascriptExecutor javascriptExecutor;
+    private static String parentWindowHandler;
 
     private Environment() {
         System.setProperty("webdriver.gecko.driver", SETTINGS.pathToGeckoDriver + "\\geckodriver.exe");
@@ -42,5 +43,11 @@ public class Environment {
         return javascriptExecutor;
     }
 
+    public static String getParentWindowHandler() {
+        return parentWindowHandler;
+    }
 
+    public static void setParentWindowHandler(String windowHandler) {
+        parentWindowHandler = windowHandler;
+    }
 }

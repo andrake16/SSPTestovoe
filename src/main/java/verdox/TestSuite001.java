@@ -7,6 +7,10 @@ import ids.WaitStates;
 import org.testng.annotations.*;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import org.testng.util.Strings;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class TestSuite001 {
@@ -33,8 +37,8 @@ public class TestSuite001 {
     public void test001() throws Exception {
 
         Environment.getWebDriver().get(ADDRESS_WEB);
-        comboActions.clickAndType( Objs.LoginPage.loginInput(), LOGIN);
-        comboActions.clickAndType( Objs.LoginPage.passwdInput(), PASSWORD);
+        ComboActions.clickAndType( Objs.LoginPage.loginInput(), LOGIN);
+        ComboActions.clickAndType( Objs.LoginPage.passwdInput(), PASSWORD);
         Objs.LoginPage.submitBtn().click();
 
         WaitStates.waitLeftFrameAppears();
@@ -44,6 +48,10 @@ public class TestSuite001 {
 
         WaitStates.waitOutDocCreatingFormAppears();
         HighLEvelActions.fillOutDocForm(OutDocs.OutDoc_0001());
+        HighLEvelActions.editOutDocAfterCreate();
+        HighLEvelActions.sendToAgr(Arrays.asList("Устинова Екатерина Семёновна",
+                "Цветкова Алевтина Александровна"),
+                "Описание отправления на согласование");
 
 
 
