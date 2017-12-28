@@ -1,5 +1,6 @@
 package verdox;
 
+import ids.Objs;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -18,6 +19,8 @@ public class Environment {
 
         javascriptExecutor = (JavascriptExecutor) webDriver;
         //javascriptExecutor.executeScript("window.focus();");
+
+        Objs.setWebdriver(webDriver);
     }
 
     private static void getInstance() {
@@ -33,9 +36,10 @@ public class Environment {
 
     public static void tearDownWebDriver(){
         if(webDriver != null) {
-            webDriver.close();
-            //wd.quit();
+            //webDriver.close(); //close browser
+            webDriver.quit(); //destroy driver
         }
+        environment = null;
     }
 
     public static JavascriptExecutor getJSexecutor() {

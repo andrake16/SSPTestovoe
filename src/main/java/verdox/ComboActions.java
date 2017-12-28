@@ -3,6 +3,7 @@ package verdox;
 import ids.Objs;
 import ids.WaitStates;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -15,6 +16,7 @@ public class ComboActions {
 
     public static void clickAndType(WebElement el, String text) {
         el.click();
+        el.sendKeys(Keys.END);
         el.sendKeys(text);
     }
 
@@ -77,8 +79,12 @@ public class ComboActions {
     }
 
     public static void delay() {
+        delay(SETTINGS.DEFAULT_DELAY);
+    }
+
+    public static void delay(int ms) {
         try {
-            Thread.sleep(SETTINGS.DEFAULT_DELAY);
+            Thread.sleep(ms);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

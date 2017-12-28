@@ -9,9 +9,8 @@ public class Objs {
 
     private static WebDriver wd;
 
-    public Objs() {
-        wd = Environment.getWebDriver();
-
+    public static void setWebdriver(WebDriver webdriver) {
+        wd = webdriver;
     }
 
 
@@ -27,11 +26,13 @@ public class Objs {
 
     public static void switchToLeftFrame() {
         switchToDefaultContext();
+        WaitStates.waitRightFrameAppears();
         wd.switchTo().frame("left");
     }
 
     public static WebElement byXpath(String xpath) {
         return wd.findElement(By.xpath(xpath));
+        //return Environment.getWebDriver().findElement(By.xpath(xpath));
     }
 
 

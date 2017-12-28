@@ -1,9 +1,12 @@
 package verdox;
 
 import TestingData.OutDocs;
+import TestingData.Users;
+import ids.IDs;
 import ids.Objs;
 
 import ids.WaitStates;
+import org.openqa.selenium.By;
 import org.testng.annotations.*;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -15,16 +18,9 @@ import java.util.Arrays;
 
 public class TestSuite001 {
 
-    private static final String LOGIN = "dir";
-    private static final String PASSWORD = "123";
-    private static final String ADDRESS_WEB = "http://demo107140.verdox.ru/107140/navigate.jsp";
-
-    private static java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger("InfoLogging");
-
-
     @BeforeSuite
     public void setUp(){
-        Objs objs = new Objs();
+
     }
 
     @AfterSuite
@@ -32,16 +28,21 @@ public class TestSuite001 {
         //Environment.tearDownWebDriver();
     }
 
+    @BeforeMethod
+    public void beforeTest() {
 
-    @Test(enabled = true, priority = 0, description = "логин в СЭД")
-    public void test001() throws Exception {
+    }
 
-        Environment.getWebDriver().get(ADDRESS_WEB);
-        ComboActions.clickAndType( Objs.LoginPage.loginInput(), LOGIN);
-        ComboActions.clickAndType( Objs.LoginPage.passwdInput(), PASSWORD);
-        Objs.LoginPage.submitBtn().click();
+    @AfterMethod
+    public void afterTest() {
+       // Environment.tearDownWebDriver();
+    }
 
-        WaitStates.waitLeftFrameAppears();
+    @Test(enabled = true, priority = 0, description = "логин в СЭД и создание исходящего документа, редактируем, отправляем на согласование")
+    public void test001() {
+
+        Environment.getWebDriver().get(SETTINGS.ADDRESS_WEB);
+        HighLEvelActions.loginByUser(Users.dir());
 
         Objs.NaviPage.createOutDocBtn().click();
         Objs.switchToDefaultContext();
@@ -49,14 +50,17 @@ public class TestSuite001 {
         WaitStates.waitOutDocCreatingFormAppears();
         HighLEvelActions.fillOutDocForm(OutDocs.OutDoc_0001());
         HighLEvelActions.editOutDocAfterCreate();
-        HighLEvelActions.sendToAgr(Arrays.asList("Устинова Екатерина Семёновна",
-                "Цветкова Алевтина Александровна"),
+        HighLEvelActions.sendToAgr(Arrays.asList(Users.zamdir2(), Users.yurist()),
                 "Описание отправления на согласование");
 
+        Environment.tearDownWebDriver(); //temporary for debug next test
 
+    }
 
-
-
+    @Test(enabled = true, priority = 1, description = "логин согласующими и согласуем исходящий документ")
+    public void test002() {
+        Environment.getWebDriver().get(SETTINGS.ADDRESS_WEB);
+        HighLEvelActions.loginByUser(Users.zamdir2());
 
 
     }

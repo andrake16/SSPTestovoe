@@ -2,7 +2,9 @@ package verdox;
 
 import TestingData.Classes.Org;
 import TestingData.Classes.OutDoc;
+import TestingData.Classes.User;
 import TestingData.OutDocs;
+import TestingData.Users;
 import ids.IDs;
 import ids.Objs;
 import ids.WaitStates;
@@ -10,6 +12,15 @@ import ids.WaitStates;
 import java.util.List;
 
 public class HighLEvelActions {
+
+    public static void loginByUser(User usr) {
+
+        ComboActions.clickAndType( Objs.LoginPage.loginInput(), usr.getLogin());
+        ComboActions.clickAndType( Objs.LoginPage.passwdInput(),usr.getPwd());
+        Objs.LoginPage.submitBtn().click();
+
+        WaitStates.waitLeftFrameAppears();
+    }
 
     public static void fillOutDocForm(OutDoc outDoc) {
 
@@ -73,16 +84,17 @@ public class HighLEvelActions {
         Objs.switchToLeftFrame();
         Objs.afterCreateOutDoc.editOutDoc().click();
         Objs.switchToRightFrame();
+        ComboActions.swithToLastBrowserWindow();
         WaitStates.waitJSdone();
-        ComboActions.clickAndType( Objs.OutDocForm.docNameTextArea(), "in process");
-        OutDocs.OutDoc_0001().setName(OutDocs.OutDoc_0001().getName() + "in process");
+        ComboActions.clickAndType( Objs.OutDocForm.docNameTextArea(), "_in process");
+        OutDocs.OutDoc_0001().setName(OutDocs.OutDoc_0001().getName() + "_in process");
         Objs.afterCreateOutDoc.saveBtn().click();
         Objs.switchToDefaultContext();
         WaitStates.waitJSdone();
 
     }
 
-    public static void sendToAgr(List<String> agrPersonList, String comments) {
+    public static void sendToAgr(List<User> agrPersonList, String comments) {
 
         Objs.switchToLeftFrame();
         Objs.afterCreateOutDoc.toAgreeOutDoc().click();
@@ -92,13 +104,11 @@ public class HighLEvelActions {
         Objs.switchToRightFrame();
         WaitStates.waitJSdone();
 
-        for(String fio : agrPersonList) {
+        for(User usr : agrPersonList) {
             Objs.afterCreateOutDoc.addAgrPersonBtn().click();
-            HighLEvelActions.selectUsersFromPopupWindow(fio);
+            HighLEvelActions.selectUsersFromPopupWindow(usr.getFio());
         }
 
-        //Objs.switchToRightFrame();
-        //WaitStates.waitJSdone();
         ComboActions.clickAndType(Objs.afterCreateOutDoc.descriptionTextArea(),comments);
 
         Objs.afterCreateOutDoc.sendToAgrBtn().click();

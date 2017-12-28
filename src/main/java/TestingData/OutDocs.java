@@ -12,7 +12,7 @@ public class OutDocs {
         outDoc.setType("Письмо");
         outDoc.setFrom("ООО \"Вторая организация\"");
         outDoc.addIncomingDoc("(б/н) Вх-041/13 от 15.12.2017 Коммерческое предложение на сайт");
-        outDoc.setName("Outgoing_Doc_0001");
+        outDoc.setName("Outgoing_Doc_0001_" + utils.common.getCurrentTimeStamp());
         outDoc.addOrg(Orgs.OOO_Sever_get());
         outDoc.addWhoSigns("Колобова Марина Олеговна");
         outDoc.addPerformer("Доронина Светлана Олеговна");
