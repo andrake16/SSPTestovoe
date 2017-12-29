@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class common {
     public static String getCurrentTimeStamp() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
+        return new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS").format(new Date());
     }
 
 

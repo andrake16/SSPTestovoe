@@ -3,6 +3,7 @@ package ids;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.util.Strings;
 import verdox.Environment;
 
 public class Objs {
@@ -26,7 +27,7 @@ public class Objs {
 
     public static void switchToLeftFrame() {
         switchToDefaultContext();
-        WaitStates.waitRightFrameAppears();
+        WaitStates.waitLeftFrameAppears();
         wd.switchTo().frame("left");
     }
 
@@ -46,9 +47,15 @@ public class Objs {
 
     public static class NaviPage {
         public static WebElement createOutDocBtn() {
-            wd.switchTo().frame("left");
+            switchToLeftFrame();
             return byXpath(IDs.NaviPage.xpath_LPANEL_CREATE_OUT_DOC);
         }
+
+        public static WebElement outDocsShowAll() {
+            switchToLeftFrame();
+            return byXpath("//a[@navigatecontentid='dc_DC_OUT_DC_OUT_show_all_filterView']");
+        }
+
     }
 
     public static class OutDocForm {
@@ -167,4 +174,24 @@ public class Objs {
         public static WebElement sendToAgrBtn() {return byXpath("//input[@class='btn'][@value='Отправить на согласование']"); }
     }
 
+    public static class OutDocList {
+
+        public static WebElement filterNameTF() {
+            switchToRightFrame();
+            return byXpath("//input[@name='name']");
+        }
+
+        public static WebElement filterSearchBtn() {
+            switchToRightFrame();
+            return byXpath("//input[@class='btn'][@value='Поиск']");
+        }
+
+        public static WebElement outDocNameInTable(String outDocName) {
+            switchToRightFrame();
+            String xpath = "//table[@class='table-common ']/tbody/tr/td/a[contains(text(), '%1$s')]";
+            xpath = String.format(xpath,outDocName);
+            return byXpath(xpath);
+        }
+
+    }
 }

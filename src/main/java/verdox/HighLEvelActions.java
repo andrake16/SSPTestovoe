@@ -7,6 +7,7 @@ import TestingData.OutDocs;
 import TestingData.Users;
 import ids.IDs;
 import ids.Objs;
+import ids.WaitPages;
 import ids.WaitStates;
 
 import java.util.List;
@@ -82,6 +83,7 @@ public class HighLEvelActions {
 
     public static void editOutDocAfterCreate() {
         Objs.switchToLeftFrame();
+        WaitStates.waitJSdone();
         Objs.afterCreateOutDoc.editOutDoc().click();
         Objs.switchToRightFrame();
         ComboActions.swithToLastBrowserWindow();
@@ -115,6 +117,19 @@ public class HighLEvelActions {
 
         Environment.getWebDriver().switchTo().alert().accept();
 
+    }
+
+    public static void agreeOutDoc(OutDoc outDoc) {
+        Objs.NaviPage.outDocsShowAll().click();
+        Objs.switchToRightFrame();
+        WaitStates.waitJSdone();
+
+        Objs.OutDocList.filterNameTF().sendKeys(outDoc.getName());
+        Objs.OutDocList.filterSearchBtn().click();
+        WaitStates.waitJSdone();
+
+        Objs.OutDocList.outDocNameInTable(outDoc.getName()).click();
+        WaitPages.waitAgreePage();
     }
 }
 

@@ -5,6 +5,7 @@ import TestingData.Users;
 import ids.IDs;
 import ids.Objs;
 
+import ids.WaitPages;
 import ids.WaitStates;
 import org.openqa.selenium.By;
 import org.testng.annotations.*;
@@ -14,6 +15,8 @@ import org.testng.util.Strings;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class TestSuite001 {
@@ -26,6 +29,7 @@ public class TestSuite001 {
     @AfterSuite
     public void tearDown() {
         //Environment.tearDownWebDriver();
+        OutDocs.resetEditedDataToDefault();
     }
 
     @BeforeMethod
@@ -61,12 +65,10 @@ public class TestSuite001 {
     public void test002() {
         Environment.getWebDriver().get(SETTINGS.ADDRESS_WEB);
         HighLEvelActions.loginByUser(Users.zamdir2());
+        OutDocs.OutDoc_0001().setName("Outgoing_Doc_0001_2017-12-29_14:08:47.898_in process");
+        HighLEvelActions.agreeOutDoc(OutDocs.OutDoc_0001());
 
 
     }
-
-
-
-
 
 }
