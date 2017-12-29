@@ -73,6 +73,16 @@ public class ComboActions {
 
     }
 
+    public static void swithToRootWndAfterClickingInChildWnd() {
+
+        WebDriver wd = Environment.getWebDriver();
+        WaitStates.waitWhileBrowserWindowCountWillBe(1);
+        //Environment.setParentWindowHandler(wd.getWindowHandle());
+        Set<String> handles = wd.getWindowHandles();
+        wd.switchTo().window(handles.iterator().next());
+
+    }
+
     public static void swithToParentBrowserWindow() {
         Environment.getWebDriver().switchTo().window(Environment.getParentWindowHandler());  // switch back to parent window
         delay();

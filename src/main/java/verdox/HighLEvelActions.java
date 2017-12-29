@@ -130,6 +130,25 @@ public class HighLEvelActions {
 
         Objs.OutDocList.outDocNameInTable(outDoc.getName()).click();
         WaitPages.waitAgreePage();
+
+        ComboActions.swithToLastBrowserWindow();
+        Objs.switchToRightFrame();
+        WaitStates.waitJSdone();
+
+        Objs.OutDocList.agreeIcnBtn().click();
+
+        WaitStates.waitWhileBrowserWindowWillBeTwo();
+        ComboActions.swithToLastBrowserWindow();
+        WaitStates.waitJSdone();
+
+        Objs.agreePopupWnd.descriptionTextArea().sendKeys("Подтверждаю что проект со мной согласован ! " );
+        Objs.agreePopupWnd.agreeBtn().click();
+
+        ComboActions.swithToRootWndAfterClickingInChildWnd();
+        Objs.switchToDefaultContext();
+
+
+
     }
 }
 

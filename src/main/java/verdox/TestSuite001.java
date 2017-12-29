@@ -65,7 +65,12 @@ public class TestSuite001 {
     public void test002() {
         Environment.getWebDriver().get(SETTINGS.ADDRESS_WEB);
         HighLEvelActions.loginByUser(Users.zamdir2());
-        OutDocs.OutDoc_0001().setName("Outgoing_Doc_0001_2017-12-29_14:08:47.898_in process");
+        //OutDocs.OutDoc_0001().setName("Outgoing_Doc_0001_2017-12-29_14:08:47.898_in process");
+        HighLEvelActions.agreeOutDoc(OutDocs.OutDoc_0001());
+
+        Environment.tearDownWebDriver(); //temporary for debug next test
+        Environment.getWebDriver().get(SETTINGS.ADDRESS_WEB);
+        HighLEvelActions.loginByUser(Users.yurist());
         HighLEvelActions.agreeOutDoc(OutDocs.OutDoc_0001());
 
 

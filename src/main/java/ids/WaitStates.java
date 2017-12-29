@@ -1,6 +1,7 @@
 package ids;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -14,7 +15,7 @@ import java.util.Set;
 public class WaitStates {
     private static int DEFAULT_WAIT_TIME = 7;
 
-    public static void waitJSdone() {
+    public static void waitJSdoneOld() {
         (new WebDriverWait(Environment.getWebDriver(), DEFAULT_WAIT_TIME)).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver wd) {
 
@@ -23,6 +24,24 @@ public class WaitStates {
 
                     Boolean isJQueryDone = (Boolean) Environment.getJSexecutor().
                             executeScript("return jQuery.active == 0");
+
+                    return isJSdone && isJQueryDone;
+                }
+        });
+
+    }
+
+    public static void waitJSdone() {
+        (new WebDriverWait(Environment.getWebDriver(), DEFAULT_WAIT_TIME)).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver wd) {
+                JavascriptExecutor js = Environment.getJSexecutor();
+
+                Boolean isJSdone = js.executeScript("return document.readyState").toString().equals("complete");
+
+                Boolean isJQueryDone = false;
+                if( (Boolean) js.executeScript("return window.jQuery != undefined") )
+                    isJQueryDone =  (Boolean) js.executeScript("return jQuery.active == 0");
+
 
                     return isJSdone && isJQueryDone;
                 }

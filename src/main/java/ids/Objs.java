@@ -193,5 +193,48 @@ public class Objs {
             return byXpath(xpath);
         }
 
+        public static WebElement promoteIcnBtn() {
+            switchToRightFrame();
+            return byXpath("//table/tbody/tr/td/a[contains(@onclick,'entityActionName=promote')]");
+        }
+
+        public static WebElement additionalAgreeIcnBtn() {
+            switchToRightFrame();
+            return byXpath("//table/tbody/tr/td/a[contains(@onclick,'entityActionName=dop')]");
+        }
+
+        public static WebElement agreeIcnBtn() {
+            switchToRightFrame();
+            return byXpath("//table/tbody/tr/td/a[contains(@onclick,'entityActionName=agr_ok')]");
+
+        }
+
+        public static WebElement agreeWithRemarkIcnBtn() {
+            switchToRightFrame();
+            return byXpath("//table/tbody/tr/td/a[contains(@onclick,'entityActionName=reply_ok_remark')]");
+        }
+
+        public static WebElement declineIcnBtn() {
+            switchToRightFrame();
+            return byXpath("//table/tbody/tr/td/a[contains(@onclick,'entityActionName=reply_bad')]");
+        }
+
+    }
+
+    public static class agreePopupWnd {
+
+        public static WebElement descriptionTextArea() {
+            return byXpath("//textarea[@name='description']");
+        }
+
+        public static WebElement agreeBtn() {
+            return byXpath("//input[@class='btn'][@value='Согласовано']");
+        }
+
+        public static WebElement closeBtn() {
+            return byXpath("//input[@class='btn'][@value='Закрыть']");
+        }
+
+
     }
 }
